@@ -1,15 +1,55 @@
 ﻿<Window x:Class="SimpleFocus.Wpf.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
         WindowStyle="None"
         AllowsTransparency="True"
-        MouseDown="UIElement_OnMouseDown"
-        Height="50" Width="100">
-    <Grid MouseDown="UIElement_OnMouseDown">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <TextBox Grid.Row="1" Text="{Binding StringValue}" KeyDown="UIElement_OnKeyDown" />
-    </Grid>
+        MouseDown="DragableArea_OnMouseDown"
+        Background="Transparent"
+        Foreground="#FAFAFA"
+        ShowInTaskbar="False"
+        Height="65" Width="120">
+    <Window.Resources>
+        <Style TargetType="Control">
+            <Setter Property="Background" Value="#212121" />
+            <Setter Property="Foreground" Value="#FAFAFA" />
+            <Setter Property="FontFamily" Value="Segoe UI" />
+            <Setter Property="FontSize" Value="18" />
+        </Style>
+        <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type Control}}">
+            <Setter Property="BorderThickness" Value="0" />
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="Background" Value="#212121" />
+            <Setter Property="Foreground" Value="#FAFAFA" />
+            <Setter Property="FontFamily" Value="Segoe UI" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="Padding" Value="10" />
+        </Style>
+    </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding Modifiers="Alt" Key="F4" Command="{Binding Path=CloseApp}" />
+    </Window.InputBindings>
+    <Window.ContextMenu>
+        <ContextMenu>
+            <MenuItem Header="Quit" Click="ContextMenuQuit_Click" />
+        </ContextMenu>
+    </Window.ContextMenu>
+    <Border Margin="10">
+        <Border.Effect>
+            <DropShadowEffect Color="Black"
+                              Direction="270"
+                              BlurRadius="10"
+                              ShadowDepth="3" />
+        </Border.Effect>
+        <Grid MouseDown="DragableArea_OnMouseDown">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBox Grid.Row="1" Name="EditTimeTextBox" Text="{Binding StringValue}" KeyDown="UIElement_OnKeyDown" LostFocus="EditTimeTextBox_OnLostFocus" Visibility="Hidden" />
+            <TextBlock Grid.Row="1" Name="ShowTimeTextBlock" Text="{Binding StringValue}" MouseDown="TextBlock_OnMouseDown" />
+        </Grid>
+    </Border>
 </Window>

@@ -3,13 +3,13 @@
 * [X] Countdown
 * [X] Borderless
 * [X] Without header
-* [ ] Not in taskbar
+* [X] Not in taskbar
+* [X] Context menu (Quit)
+* [X] Dark theme
+* [X] Proper font
+* [X] Double click for edit
+* [X] Drag by any place
 * [ ] Tray icon
-* [ ] Context menu (Quit)
-* [ ] Dark theme
-* [ ] Proper font
-* [ ] Double click for edit
-* [ ] Drag by any place
 * [ ] Visualize timer end
 * [ ] Beep on timer end
 * [ ] Time format in two rows

@@ -22,7 +22,14 @@ namespace SimpleFocus.Wpf
 
         public string StringValue
         {
-            get => _timeLeft.ToString("g");
+            get
+            {
+                if (_timeLeft.Hours > 0)
+                    return $"{_timeLeft.Hours}h {_timeLeft.Minutes:00}m";
+                if (_timeLeft.Minutes > 0)
+                    return $"{_timeLeft.Minutes}:{_timeLeft.Seconds:00}";
+                return $"{_timeLeft.Seconds}.{_timeLeft.Milliseconds:00}";
+            }
             set
             {
                 _timeLeft = TimeSpan.FromMinutes(Convert.ToDouble(value));
