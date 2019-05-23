@@ -13,5 +13,6 @@
 * [ ] Visualize timer end
 * [ ] Beep on timer end
 * [ ] Time format in two rows
+* [ ] Round design
 * [ ] Round progress
 * [ ] Recent timers
