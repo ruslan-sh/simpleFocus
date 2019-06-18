@@ -33,7 +33,7 @@ namespace SimpleFocus.Wpf
                     return $"{_timeLeft.Hours}h {_timeLeft.Minutes:00}m";
                 if (_timeLeft.Minutes > 0)
                     return $"{_timeLeft.Minutes}:{_timeLeft.Seconds:00}";
-                return $"{_timeLeft.Seconds}.{_timeLeft.Milliseconds:00}";
+                return $"{_timeLeft.Seconds}.{_timeLeft.Milliseconds/10:00}";
             }
             set
             {
