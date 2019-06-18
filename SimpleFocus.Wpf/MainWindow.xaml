@@ -48,8 +48,10 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <TextBox Grid.Row="1" Name="EditTimeTextBox" Text="{Binding StringValue}" KeyDown="UIElement_OnKeyDown" LostFocus="EditTimeTextBox_OnLostFocus" Visibility="Hidden" />
-            <TextBlock Grid.Row="1" Name="ShowTimeTextBlock" Text="{Binding StringValue}" MouseDown="TextBlock_OnMouseDown" />
+            <TextBox Grid.Row="1" Name="EditTimeTextBox" Text="{Binding StringValue}" KeyDown="UIElement_OnKeyDown"
+                     LostFocus="EditTimeTextBox_OnLostFocus" Visibility="Hidden" />
+            <TextBlock Grid.Row="1" Name="ShowTimeTextBlock" Text="{Binding StringValue}"
+                       MouseDown="TextBlock_OnMouseDown" />
         </Grid>
     </Border>
 </Window>

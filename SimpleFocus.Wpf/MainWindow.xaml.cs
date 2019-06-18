@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -12,23 +11,21 @@ namespace SimpleFocus.Wpf
     /// </summary>
     public partial class MainWindow
     {
-        private readonly DispatcherTimer timer;
         private TimerModel timerModel;
 
         public MainWindow()
         {
             InitializeComponent();
+            HideFromAltTab();
             Topmost = true;
 
             timerModel = new TimerModel();
             DataContext = timerModel;
 
-            timer = new DispatcherTimer();
+            var timer = new DispatcherTimer();
             timer.Tick += timer_Tick;
             timer.Interval = TimeSpan.FromMilliseconds(10);
             timer.Start();
-
-            HideFromAltTab();
         }
 
         private void HideFromAltTab()
@@ -55,7 +52,11 @@ namespace SimpleFocus.Wpf
         {
             if (timerModel.TimeIsZero)
                 return;
-            timerModel.Sub(timer.Interval);
+
+            var now = DateTime.Now;
+            var delta = now - (timerModel.LastTick ?? now);
+            timerModel.Sub(delta);
+            timerModel.LastTick = now;
         }
 
         private void UIElement_OnKeyDown(object sender, KeyEventArgs e)

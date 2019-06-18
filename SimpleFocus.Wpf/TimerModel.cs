@@ -15,8 +15,13 @@ namespace SimpleFocus.Wpf
 
         public void Sub(TimeSpan timerInterval)
         {
+            if (TimeIsZero) return;
             _timeLeft = _timeLeft - timerInterval;
-            if (_timeLeft.Ticks < 0) _timeLeft = TimeSpan.Zero;
+            if (_timeLeft.Ticks < 0)
+            {
+                _timeLeft = TimeSpan.Zero;
+                LastTick = null;
+            }
             OnPropertyChanged(nameof(StringValue));
         }
 
@@ -33,9 +38,12 @@ namespace SimpleFocus.Wpf
             set
             {
                 _timeLeft = TimeSpan.FromMinutes(Convert.ToDouble(value));
+                LastTick = null;
                 OnPropertyChanged(nameof(StringValue));
             }
         }
+
+        public DateTime? LastTick { get; set; }
 
         public void Reset()
         {
